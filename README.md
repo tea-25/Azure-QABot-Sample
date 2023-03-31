@@ -1,1 +1,1 @@
-# Azure-QABot-Smaple
+# Azure-QABot-Sample
