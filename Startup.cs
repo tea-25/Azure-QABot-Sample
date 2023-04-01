@@ -13,7 +13,6 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 // using add
 using Microsoft.Bot.Builder.AI.QnA;
-using Azure.AI.Language.QuestionAnswering;
 
 using System;
 
@@ -52,15 +51,6 @@ namespace EchoBot
                 EndpointKey = Environment.GetEnvironmentVariable("QnA_AUTH_KEY"),
                 Host = Environment.GetEnvironmentVariable("QnA_ENDPOINT_HOSTNAME")
             });
-
-            // QuestionAnswering Endpoint Add
-            //services.AddSingleton(new QuestionAnsweringEndpoint
-            //{
-            //    endpoint = Environment.GetEnvironmentVariable("QA_ENDPOINT"),
-            //    credential = Environment.GetEnvironmentVariable("QA_AUTH_KEY"),
-            //    projectname = Environment.GetEnvironmentVariable("QA_PROJECT_NAME"),
-            //    deploymentName = Environment.GetEnvironmentVariable("DEPLOYMENT_NAME")
-            //});
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
