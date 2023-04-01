@@ -19,7 +19,7 @@ namespace EchoBot.Bots
     public class EchoBot : ActivityHandler
     {
         public QnAMaker EchoBotQnA { get; private set; }
-        public EchoBot(QnAMakerEndpoint)
+        public EchoBot(QnAMakerEndpoint endpoint)
         {
             // connects to QnA Maker endpoint for each turn
             EchoBotQnA = new QnAMaker(endpoint);
@@ -33,6 +33,7 @@ namespace EchoBot.Bots
             await turnContext.SendActivityAsync(MessageFactory.Text(replyText, replyText), cancellationToken);
 
             // QnA Maker Access
+            await AccessQnAMaker(turnContext, cancellationToken);
         }
 
         // welcome run
@@ -50,14 +51,16 @@ namespace EchoBot.Bots
 
         // access qna maker
         private async Task AccessQnAMaker(ITurnContext<IMessageActivity> turnContext, CancellationToken cancellationToken)
-        var requests = await EchoBotQnA.GetAnswersAsync(turnContext);
-        if(results.Any())
         {
-            await turnContext.SendActivityAsync(MessageFactory.Text("回答は" + results.First().Answer), cancellationToken);
-        }
-        else
-        {
-            await turnContext.SendActivityAsync(MessageFactory.Text("回答なし"), cancellationToken);
+            var results = await EchoBotQnA.GetAnswersAsync(turnContext);
+            if(results.Any())
+            {
+                await turnContext.SendActivityAsync(MessageFactory.Text("回答は" + results.First().Answer), cancellationToken);
+            }
+            else
+            {
+                await turnContext.SendActivityAsync(MessageFactory.Text("回答なし"), cancellationToken);
+            }
         }
     }
 }
