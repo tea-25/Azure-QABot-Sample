@@ -10,7 +10,6 @@ using Microsoft.Bot.Builder;
 using Microsoft.Bot.Schema;
 // using add
 using Microsoft.Bot.Builder.AI.QnA;
-using Azure.AI.Language.QuestionAnswering;
 using System;
 using System.Linq;
 
